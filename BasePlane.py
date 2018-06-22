@@ -4,6 +4,7 @@ import time
 
 
 class BasePlane(Base):
+
     def __init__(self, screen_temp, x, y, image_name):
         Base.__init__(self, screen_temp, x, y, image_name)
         self.bullet_list = []  # 存储子弹
@@ -14,7 +15,6 @@ class BasePlane(Base):
         self.planeType = 0  # 用来记录飞机类型，0为我的飞机，1为敌机
 
     def display(self, plane):
-
         # 如果被击中,就显示爆炸效果,否则显示普通的飞机效果
         if self.hit == True:
             self.screen.blit(self.bomb_list[self.image_index], (self.x, self.y))
@@ -24,7 +24,10 @@ class BasePlane(Base):
                 self.image_index += 1
             if self.image_index > 3:
                 time.sleep(1)
-                exit()  # 调用exit让游戏退出
+                if self.planeType == 0:
+                    exit()  # 如果玩家飞机被击中，调用exit让游戏退出
+                elif self.planeType == 1:  # 如果敌机被击中则重新产生一架
+                    exit()
                 # self.image_index = 0
         else:
             self.screen.blit(self.image, (self.x, self.y))
@@ -37,6 +40,10 @@ class BasePlane(Base):
             if self.planeType == 1:
                 if bullet.x > plane.x and bullet.x < plane.x + 100 and bullet.y > plane.y and bullet.y < plane.y + 124:
                     plane.bomb()
+            elif self.planeType == 0:
+                if bullet.x > plane.x and bullet.x < plane.x + 51 and bullet.y > plane.y and bullet.y < plane.y + 39:
+                    plane.bomb()
+
 
     def bomb(self):
         self.hit = True

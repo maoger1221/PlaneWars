@@ -11,16 +11,16 @@ class HeroPlane(BasePlane):
         self.planeType = 0
 
     def move_left(self):
-        self.x -= 5
+        self.x -= 10
 
     def move_right(self):
-        self.x += 5
+        self.x += 10
 
     def move_up(self):
-        self.y -= 5
+        self.y -= 10
 
     def move_down(self):
-        self.y += 5
+        self.y += 10
 
     def fire(self):
         self.bullet_list.append(Bullet(self.screen, self.x, self.y))

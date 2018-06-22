@@ -7,7 +7,6 @@ from EnemyPlane import EnemyPlane
 
 
 def key_control(hero_temp):
-
     # 按下按键
     for event in pygame.event.get():
 
@@ -44,7 +43,8 @@ def main():
 
     while True:
         screen.blit(background, (0, 0))
-        hero.display(enemy)  # 传入敌机的位置，用于判断子弹是否击中
+        # 传入敌机的位置，用于判断子弹是否击中
+        hero.display(enemy)
         enemy.display(hero)
         enemy.move()
         # 开火
